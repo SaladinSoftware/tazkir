@@ -1,8 +1,12 @@
 import Navbar from '../components/Navbar'
+import TimesSection from '../components/TimesSection'
 
 function Home() {
   return (
-    <Navbar />
+    <>
+      <Navbar />
+      <TimesSection />
+    </>
   )
 }
 

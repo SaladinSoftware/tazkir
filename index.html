@@ -5,6 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tazkir — Prayer Times</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a flash of the wrong
+      // one. Storage key must match STORAGE_KEY in src/components/ThemeToggle.tsx.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('tazkir-theme')
+          var dark =
+            stored === 'dark' ||
+            (stored === null && matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.classList.toggle('dark', dark)
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
