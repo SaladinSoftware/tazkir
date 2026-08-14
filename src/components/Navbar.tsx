@@ -1,15 +1,18 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Link, useLocation } from 'react-router'
 import ThemeToggle from './ThemeToggle'
 import classNames from '../utils/classNames'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Contact us', href: '#', current: false },
+  { name: 'Dashboard', to: '/' },
+  { name: 'About Us', to: '/about' },
 ]
 
 export default function Navbar() {
+  // Drives the highlight from the actual route rather than a hardcoded flag.
+  const { pathname } = useLocation()
+
   return (
     <Disclosure
       as="nav"
@@ -37,19 +40,19 @@ export default function Navbar() {
             <div className="hidden md:ml-6 md:flex md:items-center">
               <div className="flex space-x-6">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
+                    to={item.to}
+                    aria-current={pathname === item.to ? 'page' : undefined}
                     className={classNames(
-                      item.current
+                      pathname === item.to
                         ? 'bg-gray-900/10 text-gray-900 dark:bg-gray-950/50 dark:text-white'
                         : 'text-gray-600 hover:bg-gray-900/5 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white',
                       'rounded-md px-3 py-2 text-lg font-bold',
                     )}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -66,11 +69,11 @@ export default function Navbar() {
           {navigation.map((item) => (
             <DisclosureButton
               key={item.name}
-              as="a"
-              href={item.href}
-              aria-current={item.current ? 'page' : undefined}
+              as={Link}
+              to={item.to}
+              aria-current={pathname === item.to ? 'page' : undefined}
               className={classNames(
-                item.current
+                pathname === item.to
                   ? 'bg-gray-900/10 text-gray-900 dark:bg-gray-950/50 dark:text-white'
                   : 'text-gray-600 hover:bg-gray-900/5 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white',
                 'block rounded-md px-3 py-2 text-lg font-bold',
