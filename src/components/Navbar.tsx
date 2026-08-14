@@ -3,6 +3,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useLocation } from 'react-router'
 import ThemeToggle from './ThemeToggle'
 import classNames from '../utils/classNames'
+// Imported (not referenced by path) so Vite fingerprints it and emits it to
+// dist/ — a bare path would 404 in production.
+import tazkirLogo from '../assets/tazkir_logo.png'
 
 const navigation = [
   { name: 'Dashboard', to: '/' },
@@ -31,11 +34,7 @@ export default function Navbar() {
           </div>
           <div className="flex flex-1 items-center justify-center md:justify-start">
             <div className="flex shrink-0 items-center">
-              <img
-                alt="Tazkir Logo"
-                src="./assets/tazkir_logo.png?color=indigo&shade=500"
-                className="h-23 w-auto"
-              />
+              <img alt="Tazkir Logo" src={tazkirLogo} className="h-23 w-auto" />
             </div>
             <div className="hidden md:ml-6 md:flex md:items-center">
               <div className="flex space-x-6">
