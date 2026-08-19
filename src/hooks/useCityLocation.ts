@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { getLanguage } from '../translations'
 
 // Called WITHOUT latitude/longitude, this endpoint locates by the caller's IP
 // address. That is deliberate: the app reports where your traffic appears to
@@ -39,7 +40,9 @@ export default function useCityLocation(): LocationState {
     let cancelled = false
 
     const url = new URL(REVERSE_GEOCODE_URL)
-    url.searchParams.set('localityLanguage', 'en')
+    // The endpoint localises the place name itself, so the city arrives in
+    // the page's language.
+    url.searchParams.set('localityLanguage', getLanguage())
 
     fetch(url, { signal: controller.signal })
       .then(async (response) => {

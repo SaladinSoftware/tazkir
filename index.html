@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tazkir — Prayer Times</title>
     <script>
-      // Apply the saved theme before first paint to avoid a flash of the wrong
-      // one. Storage key must match STORAGE_KEY in src/components/ThemeToggle.tsx.
+      // Apply the saved theme and language before first paint to avoid a flash
+      // of the wrong one — for the language that flash is a full left/right layout
+      // flip, so it is the more visible of the two. Storage keys must match
+      // src/components/ThemeToggle.tsx and src/translations/index.ts.
       ;(function () {
         try {
           var stored = localStorage.getItem('tazkir-theme')
@@ -16,6 +18,14 @@
             (stored === null && matchMedia('(prefers-color-scheme: dark)').matches)
           document.documentElement.classList.toggle('dark', dark)
           document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+        } catch (e) {}
+        try {
+          var lang = localStorage.getItem('tazkir-lang')
+          if (lang !== 'ar' && lang !== 'en') {
+            lang = navigator.language.toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en'
+          }
+          document.documentElement.lang = lang
+          document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
         } catch (e) {}
       })()
     </script>

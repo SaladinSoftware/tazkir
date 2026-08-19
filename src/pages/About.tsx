@@ -1,3 +1,5 @@
+import { getTranslated } from '../translations'
+
 const GITHUB_URL = 'https://github.com/SaladinSoftware'
 
 // Heroicons ships no brand marks, so the GitHub logo is inlined here.
@@ -13,19 +15,19 @@ export default function About() {
   return (
     <main className="mx-auto max-w-4xl px-4 py-16">
       <h1 className="mb-6 text-center text-3xl font-bold text-gray-900 dark:text-white">
-        About Us
+        {getTranslated('about.title')}
       </h1>
 
       <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-gray-900/10 bg-gray-100 px-4 py-8 text-center sm:flex-row dark:border-white/10 dark:bg-white/5">
         <p className="text-lg text-gray-700 dark:text-gray-300">
-          Made by Saladin Software, Mohamad Ziad Alkabakibi
+          {getTranslated('about.madeBy')}
         </p>
 
         <a
           href={GITHUB_URL}
           target="_blank"
           rel="noreferrer"
-          aria-label="Saladin Software on GitHub"
+          aria-label={getTranslated('about.github')}
           className="rounded-full p-1.5 text-gray-700 transition hover:bg-gray-900/5 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white"
         >
           <GithubIcon className="size-8" />

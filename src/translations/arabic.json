@@ -1,0 +1,30 @@
+{
+  "app.title": "تذكير — مواقيت الصلاة",
+  "app.logoAlt": "شعار تذكير",
+
+  "nav.dashboard": "الرئيسية",
+  "nav.about": "من نحن",
+  "nav.openMenu": "افتح القائمة الرئيسية",
+
+  "theme.label": "سمة الألوان",
+  "theme.light": "فاتح",
+  "theme.dark": "داكن",
+
+  "language.label": "اللغة",
+
+  "location.locating": "جارٍ تحديد الموقع…",
+  "location.unavailable": "تعذّر تحديد الموقع",
+
+  "prayer.fajr": "الفجر",
+  "prayer.sunrise": "الشروق",
+  "prayer.dhuhr": "الظهر",
+  "prayer.asr": "العصر",
+  "prayer.maghrib": "المغرب",
+  "prayer.isha": "العشاء",
+
+  "times.error": "تعذّر تحميل مواقيت الصلاة",
+
+  "about.title": "من نحن",
+  "about.madeBy": "من إعداد Saladin Software، محمد زياد القباقيبي",
+  "about.github": "حساب Saladin Software على GitHub"
+}

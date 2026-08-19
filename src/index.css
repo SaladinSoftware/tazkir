@@ -5,6 +5,13 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
+  /* The default stack has no Arabic coverage on every platform, so name the
+     system Arabic faces before falling back to it. */
+  :root:lang(ar) body {
+    font-family:
+      'Segoe UI', 'Noto Naskh Arabic', 'Geeza Pro', 'Dubai', var(--default-font-family);
+  }
+
   body {
     background-color: var(--color-white);
     color: var(--color-gray-900);

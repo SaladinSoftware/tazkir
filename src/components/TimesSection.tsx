@@ -1,13 +1,14 @@
 import { useMemo } from 'react'
 import type { PrayerKey, PrayerTimesState } from '../hooks/usePrayerTimes'
+import { getLocale, getTranslated, type TranslationKey } from '../translations'
 
-const prayers: { key: PrayerKey; name: string }[] = [
-  { key: 'fajr', name: 'Fajr' },
-  { key: 'sunrise', name: 'Sunrise' },
-  { key: 'dhuhr', name: 'Dhuhr' },
-  { key: 'asr', name: 'Asr' },
-  { key: 'maghrib', name: 'Maghrib' },
-  { key: 'isha', name: 'Isha' },
+const prayers: { key: PrayerKey; labelKey: TranslationKey }[] = [
+  { key: 'fajr', labelKey: 'prayer.fajr' },
+  { key: 'sunrise', labelKey: 'prayer.sunrise' },
+  { key: 'dhuhr', labelKey: 'prayer.dhuhr' },
+  { key: 'asr', labelKey: 'prayer.asr' },
+  { key: 'maghrib', labelKey: 'prayer.maghrib' },
+  { key: 'isha', labelKey: 'prayer.isha' },
 ]
 
 export default function TimesSection({ prayerTimes }: { prayerTimes: PrayerTimesState }) {
@@ -18,7 +19,7 @@ export default function TimesSection({ prayerTimes }: { prayerTimes: PrayerTimes
   // the clock uses.
   const timeFormatter = useMemo(
     () =>
-      new Intl.DateTimeFormat(undefined, {
+      new Intl.DateTimeFormat(getLocale(), {
         hour: '2-digit',
         minute: '2-digit',
         ...(timeZone ? { timeZone } : {}),
@@ -29,14 +30,16 @@ export default function TimesSection({ prayerTimes }: { prayerTimes: PrayerTimes
   return (
     <section className="mx-auto max-w-4xl px-4 py-10">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {prayers.map(({ key, name }) => {
+        {prayers.map(({ key, labelKey }) => {
           const iso = times?.[key]
           return (
             <div
               key={key}
               className="flex flex-col items-center justify-center gap-1 rounded-xl border border-gray-900/10 bg-gray-100 px-4 py-6 text-center dark:border-white/10 dark:bg-white/5"
             >
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{name}</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {getTranslated(labelKey)}
+              </h3>
               {iso ? (
                 <time
                   dateTime={iso}
@@ -60,7 +63,8 @@ export default function TimesSection({ prayerTimes }: { prayerTimes: PrayerTimes
 
       {status === 'error' && (
         <p role="status" className="mt-4 text-center text-sm text-red-600 dark:text-red-400">
-          Couldn’t load prayer times{error ? `: ${error}` : ''}.
+          {getTranslated('times.error')}
+          {error ? `: ${error}` : ''}.
         </p>
       )}
     </section>

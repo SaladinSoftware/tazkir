@@ -1,15 +1,17 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useLocation } from 'react-router'
+import LanguageToggle from './LanguageToggle'
 import ThemeToggle from './ThemeToggle'
+import { getTranslated, type TranslationKey } from '../translations'
 import classNames from '../utils/classNames'
 // Imported (not referenced by path) so Vite fingerprints it and emits it to
 // dist/ — a bare path would 404 in production.
 import tazkirLogo from '../assets/tazkir_logo.png'
 
-const navigation = [
-  { name: 'Dashboard', to: '/' },
-  { name: 'About Us', to: '/about' },
+const navigation: { labelKey: TranslationKey; to: string }[] = [
+  { labelKey: 'nav.dashboard', to: '/' },
+  { labelKey: 'nav.about', to: '/about' },
 ]
 
 export default function Navbar() {
@@ -23,24 +25,24 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-23 items-center justify-between">
-          <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
+          <div className="absolute inset-y-0 start-0 flex items-center md:hidden">
             {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-900/5 hover:text-gray-900 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
               <span className="absolute -inset-0.5" />
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">{getTranslated('nav.openMenu')}</span>
               <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
               <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center md:justify-start">
             <div className="flex shrink-0 items-center">
-              <img alt="Tazkir Logo" src={tazkirLogo} className="h-23 w-auto" />
+              <img alt={getTranslated('app.logoAlt')} src={tazkirLogo} className="h-23 w-auto" />
             </div>
-            <div className="hidden md:ml-6 md:flex md:items-center">
-              <div className="flex space-x-6">
+            <div className="hidden md:ms-6 md:flex md:items-center">
+              <div className="flex gap-6">
                 {navigation.map((item) => (
                   <Link
-                    key={item.name}
+                    key={item.to}
                     to={item.to}
                     aria-current={pathname === item.to ? 'page' : undefined}
                     className={classNames(
@@ -50,14 +52,15 @@ export default function Navbar() {
                       'rounded-md px-3 py-2 text-lg font-bold',
                     )}
                   >
-                    {item.name}
+                    {getTranslated(item.labelKey)}
                   </Link>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
+          <div className="absolute inset-y-0 end-0 flex items-center gap-2 pe-2 md:static md:inset-auto md:ms-6 md:pe-0">
+            <LanguageToggle />
             <ThemeToggle />
           </div>
         </div>
@@ -67,7 +70,7 @@ export default function Navbar() {
         <div className="space-y-1 px-2 pt-2 pb-3">
           {navigation.map((item) => (
             <DisclosureButton
-              key={item.name}
+              key={item.to}
               as={Link}
               to={item.to}
               aria-current={pathname === item.to ? 'page' : undefined}
@@ -78,7 +81,7 @@ export default function Navbar() {
                 'block rounded-md px-3 py-2 text-lg font-bold',
               )}
             >
-              {item.name}
+              {getTranslated(item.labelKey)}
             </DisclosureButton>
           ))}
         </div>

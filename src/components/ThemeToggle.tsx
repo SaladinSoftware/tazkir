@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline'
+import { getTranslated, type TranslationKey } from '../translations'
 import classNames from '../utils/classNames'
 
 type Theme = 'light' | 'dark'
@@ -7,10 +8,10 @@ type Theme = 'light' | 'dark'
 // Keep in sync with the anti-flash script in index.html.
 const STORAGE_KEY = 'tazkir-theme'
 
-const options = [
-  { value: 'light', label: 'Light', Icon: SunIcon },
-  { value: 'dark', label: 'Dark', Icon: MoonIcon },
-] as const
+const options: { value: Theme; labelKey: TranslationKey; Icon: typeof SunIcon }[] = [
+  { value: 'light', labelKey: 'theme.light', Icon: SunIcon },
+  { value: 'dark', labelKey: 'theme.dark', Icon: MoonIcon },
+]
 
 function getInitialTheme(): Theme {
   const stored = localStorage.getItem(STORAGE_KEY)
@@ -30,10 +31,10 @@ export default function ThemeToggle() {
   return (
     <div
       role="radiogroup"
-      aria-label="Color theme"
+      aria-label={getTranslated('theme.label')}
       className="flex items-center gap-1 rounded-full border border-gray-900/10 bg-gray-900/5 p-1 dark:border-white/10 dark:bg-white/5"
     >
-      {options.map(({ value, label, Icon }) => {
+      {options.map(({ value, labelKey, Icon }) => {
         const selected = theme === value
         return (
           <button
@@ -50,7 +51,7 @@ export default function ThemeToggle() {
             )}
           >
             <Icon aria-hidden="true" className="size-5" />
-            <span className="hidden lg:inline">{label}</span>
+            <span className="hidden lg:inline">{getTranslated(labelKey)}</span>
           </button>
         )
       })}

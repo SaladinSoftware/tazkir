@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import type { LocationState } from '../hooks/useCityLocation'
 import useClock from '../hooks/useClock'
+import { getLocale, getTranslated } from '../translations'
 
 type LocationTimeProps = Pick<LocationState, 'city' | 'status'> & {
   /** IANA zone of the located city. Null until resolved. */
@@ -15,7 +16,7 @@ export default function LocationTime({ city, status, timeZone }: LocationTimePro
   const timeFormatter = useMemo(
     () =>
       timeZone
-        ? new Intl.DateTimeFormat(undefined, {
+        ? new Intl.DateTimeFormat(getLocale(), {
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit',
@@ -25,7 +26,10 @@ export default function LocationTime({ city, status, timeZone }: LocationTimePro
     [timeZone],
   )
 
-  const label = status === 'loading' ? 'Locating…' : (city ?? 'Location unavailable')
+  const label =
+    status === 'loading'
+      ? getTranslated('location.locating')
+      : (city ?? getTranslated('location.unavailable'))
 
   return (
     <div className="mt-10 flex justify-center gap-2.5 py-2.5 text-center text-2xl font-bold text-gray-900 dark:text-white">

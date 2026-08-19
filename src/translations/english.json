@@ -1,0 +1,30 @@
+{
+  "app.title": "Tazkir — Prayer Times",
+  "app.logoAlt": "Tazkir logo",
+
+  "nav.dashboard": "Dashboard",
+  "nav.about": "About Us",
+  "nav.openMenu": "Open main menu",
+
+  "theme.label": "Color theme",
+  "theme.light": "Light",
+  "theme.dark": "Dark",
+
+  "language.label": "Language",
+
+  "location.locating": "Locating…",
+  "location.unavailable": "Location unavailable",
+
+  "prayer.fajr": "Fajr",
+  "prayer.sunrise": "Sunrise",
+  "prayer.dhuhr": "Dhuhr",
+  "prayer.asr": "Asr",
+  "prayer.maghrib": "Maghrib",
+  "prayer.isha": "Isha",
+
+  "times.error": "Couldn’t load prayer times",
+
+  "about.title": "About Us",
+  "about.madeBy": "Made by Saladin Software, Mohamad Ziad Alkabakibi",
+  "about.github": "Saladin Software on GitHub"
+}
