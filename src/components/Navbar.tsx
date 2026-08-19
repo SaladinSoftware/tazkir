@@ -24,8 +24,8 @@ export default function Navbar() {
       className="relative bg-gray-100 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gray-900/10 dark:bg-gray-800/50 dark:after:bg-white/10"
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-23 items-center justify-between">
-          <div className="absolute inset-y-0 start-0 flex items-center md:hidden">
+        <div className="flex h-23 items-center justify-between gap-2">
+          <div className="flex items-center md:hidden">
             {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-900/5 hover:text-gray-900 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
               <span className="absolute -inset-0.5" />
@@ -34,9 +34,13 @@ export default function Navbar() {
               <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
             </DisclosureButton>
           </div>
-          <div className="flex flex-1 items-center justify-center md:justify-start">
-            <div className="flex shrink-0 items-center">
-              <img alt={getTranslated('app.logoAlt')} src={tazkirLogo} className="h-23 w-auto" />
+          <div className="flex min-w-0 flex-1 items-center justify-center md:justify-start">
+            <div className="flex min-w-0 items-center">
+              <img
+                alt={getTranslated('app.logoAlt')}
+                src={tazkirLogo}
+                className="h-14 w-auto max-w-full object-contain sm:h-20 md:h-23"
+              />
             </div>
             <div className="hidden md:ms-6 md:flex md:items-center">
               <div className="flex gap-6">
@@ -59,7 +63,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="absolute inset-y-0 end-0 flex items-center gap-2 pe-2 md:static md:inset-auto md:ms-6 md:pe-0">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2 md:ms-6">
             <LanguageToggle />
             <ThemeToggle />
           </div>

@@ -47,7 +47,7 @@ export default function ThemeToggle() {
               selected
                 ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-950 dark:text-white'
                 : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white',
-              'flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
+              'flex cursor-pointer items-center gap-1.5 rounded-full px-2.5 py-1.5 text-sm font-semibold sm:px-3 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500',
             )}
           >
             <Icon aria-hidden="true" className="size-5" />
