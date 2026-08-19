@@ -12,6 +12,12 @@
 
   "language.label": "اللغة",
 
+  "city.label": "المدينة",
+  "city.placeholder": "أدخل اسم المدينة",
+  "city.search": "بحث",
+  "city.searching": "جارٍ البحث…",
+  "city.noResults": "لا توجد مدن مطابقة",
+
   "location.locating": "جارٍ تحديد الموقع…",
   "location.unavailable": "تعذّر تحديد الموقع",
 

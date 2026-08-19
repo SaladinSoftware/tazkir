@@ -12,6 +12,12 @@
 
   "language.label": "Language",
 
+  "city.label": "City",
+  "city.placeholder": "Enter a city name",
+  "city.search": "Search",
+  "city.searching": "Searching…",
+  "city.noResults": "No matching cities",
+
   "location.locating": "Locating…",
   "location.unavailable": "Location unavailable",
 
